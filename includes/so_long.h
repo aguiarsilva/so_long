@@ -22,11 +22,24 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <X11/keysym.h>
+# include <x11/X.h>
+
+typedef struct s_img
+{
+    void    *img;
+    int     *height;
+    int     *width;
+}   t_img;
 
 typedef struct s_game
 {
     void    *mlx;
     void    *window;
+    t_img   player;
+    t_img   exit;
+    t_img   wall;
+    t_img   collectible;
+    t_img   floor;
 }   t_game;
 
 #endif
