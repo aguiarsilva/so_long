@@ -18,7 +18,7 @@ MLX = ./minilibx-linux/libmlx.a
 INC		= include/
 SRC_DIR = src/
 OBJ_DIR = obj/
-CC = gcc
+CC = cc
 
 RM = rm -f
 
