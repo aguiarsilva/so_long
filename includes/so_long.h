@@ -21,7 +21,12 @@
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <X11/keysym.h>
 
-typedef
+typedef struct s_game
+{
+    void    *mlx;
+    void    *window;
+}   t_game;
 
 #endif
