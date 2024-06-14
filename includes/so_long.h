@@ -26,20 +26,26 @@
 
 typedef struct s_img
 {
-    void    *img;
-    int     *height;
-    int     *width;
+	void    *img;
+	int     *height;
+	int     *width;
 }   t_img;
 
 typedef struct s_game
 {
-    void    *mlx;
-    void    *window;
-    t_img   player;
-    t_img   exit;
-    t_img   wall;
-    t_img   collectible;
-    t_img   floor;
+	void    *mlx;
+	void    *window;
+	int		width;
+	int		height;
+	int		collectibles;
+	int		exit_E;
+	int		begin;
+	int		move;
+	t_img   player;
+	t_img   exit;
+	t_img   wall;
+	t_img   collectible;
+	t_img   floor;
 }   t_game;
 
 #endif
