@@ -25,11 +25,11 @@ RM = rm -f
 CFLAGS = -Wall -Werror -Wextra -I
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
-SO_LONG_DIR	=		$(SRC_DIR)error.c	\
-					$(SRC_DIR)fnd_a_b.c	\
-					$(SRC_DIR)fnd_b_a.c \
-					$(SRC_DIR)init_stacks.c	\
-					$(SRC_DIR)push_swap.c \
+SO_LONG_DIR	=		$(SRC_DIR)events.c	\
+					$(SRC_DIR)map_control.c	\
+					$(SRC_DIR)map_size.c \
+					$(SRC_DIR)parse_map.c	\
+					$(SRC_DIR)so_long.c \
 					$(SRC_DIR)split.c	\
 					$(SRC_DIR)utils.c \
 
