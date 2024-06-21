@@ -19,10 +19,12 @@
 # include "../minilibx-linux/mlx.h"
 # include <stdbool.h>
 # include <math.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <X11/keysym.h>
-# include <x11/X.h>
+# include <X11/X.h>
 
 typedef struct s_img
 {
@@ -41,11 +43,20 @@ typedef struct s_game
 	int		exit_E;
 	int		begin;
 	int		move;
+	char	*str;
 	t_img   player;
 	t_img   exit;
 	t_img   wall;
 	t_img   collectible;
 	t_img   floor;
 }   t_game;
+
+void    exit_error(char *error_msg);
+int     open_map(int argc, char **argv);
+char	*map_read(int fd);
+int     size_col(t_game *game);
+int     size_lin(t_game *game);
+int     close_game(t_game *game);
+void    event_receiver(t_game *game);
 
 #endif
