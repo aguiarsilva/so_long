@@ -59,5 +59,6 @@ int     size_lin(t_game *game);
 int     close_game(t_game *game);
 void    event_receiver(t_game *game);
 void    exit_game(t_game *game, char *msg);
+void	map_parse(t_game *game);
 
 #endif
