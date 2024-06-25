@@ -29,8 +29,8 @@
 typedef struct s_img
 {
 	void    *img;
-	int     *height;
-	int     *width;
+	int     height;
+	int     width;
 }   t_img;
 
 typedef struct s_game
