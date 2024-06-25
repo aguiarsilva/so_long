@@ -63,5 +63,6 @@ void	map_parse(t_game *game);
 int     sprite_move(int keycode, t_game *game);
 int     len_array(char **arr);
 void    free_game_array(int arr_len, char **arr, t_game *game, int err);
+int     put_map(t_game *game);
 
 #endif

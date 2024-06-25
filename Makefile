@@ -28,9 +28,10 @@ MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 SO_LONG_DIR	=		$(SRC_DIR)events.c	\
 					$(SRC_DIR)map_control.c	\
 					$(SRC_DIR)map_size.c \
+					$(SRC_DIR)moves.c	\
+					$(SRC_DIR)put_map.c \
 					$(SRC_DIR)parse_map.c	\
 					$(SRC_DIR)so_long.c \
-					$(SRC_DIR)split.c	\
 					$(SRC_DIR)utils.c \
 
 SRCS = $(SO_LONG_DIR)
