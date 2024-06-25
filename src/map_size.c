@@ -31,7 +31,7 @@ int     size_lin(t_game *game)
     int     arr_len;
 
     game_lns = ft_split(game->str, '\n');
-    arr_len = array_size(game_lns);
+    arr_len = len_array(game_lns);
     free_game_array(arr_len, game_lns, game, 0);
     return (arr_len);
 }

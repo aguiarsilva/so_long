@@ -6,7 +6,7 @@
 /*   By: baguiar- <baguiar-@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:21:53 by baguiar-          #+#    #+#             */
-/*   Updated: 2024/03/21 21:59:50 by baguiar-         ###   ########.fr       */
+/*   Updated: 2024/06/26 00:43:18 by baguiar-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strdup(const char *s1)
 	char	*s2;
 	size_t	i;
 
-	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	s2 = (char *)malloc(ft_strlen(s1) + 1);
 	if (!s2)
 		return (NULL);
 	i = 0;

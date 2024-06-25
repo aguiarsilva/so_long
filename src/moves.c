@@ -119,7 +119,7 @@ int     sprite_move(int keycode, t_game *game)
     if (keycode == XK_s || keycode == XK_Down)
         go_down(game);
     if (keycode == XK_d|| keycode == XK_Right)
-        go_up(game);
-    render_game(game);
+        go_right(game);
+    put_map(game);
     return (0);
 }

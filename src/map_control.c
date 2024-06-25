@@ -59,7 +59,7 @@ char	*map_read(int fd)
 			break ;
 		temp = ft_strjoin(map, line);
 		free(map);
-		map = ft_strjoin(map, line);
+		map = ft_strdup(temp);
 		free(temp);
 		free(line);
 	}

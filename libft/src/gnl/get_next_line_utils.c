@@ -6,18 +6,18 @@
 /*   By: baguiar- <baguiar-@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:20:16 by baguiar-          #+#    #+#             */
-/*   Updated: 2024/03/21 21:43:19 by baguiar-         ###   ########.fr       */
+/*   Updated: 2024/06/26 00:41:48 by baguiar-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/get_next_line.h"
 
-char	*ft_strdup(char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*s2;
 	size_t	i;
 
-	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	s2 = (char *)malloc(ft_strlen(s1) + 1);
 	if (!s2)
 		return (NULL);
 	i = 0;

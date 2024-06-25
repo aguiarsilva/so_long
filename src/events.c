@@ -44,8 +44,8 @@ int     close_game(t_game *game)
 
 void    event_receiver(t_game *game)
 {
-    mlx_loop_hook(game->mlx, show_map, game);
-    mlx_hook(game->window, KeyPress, KeyPressMask, mv_player, game);
+    mlx_loop_hook(game->mlx, put_map, game);
+    mlx_hook(game->window, KeyPress, KeyPressMask, sprite_move, game);
     mlx_hook(game->window, KeyRelease, KeyReleaseMask, esc_key, game);
     mlx_hook(game->window, DestroyNotify, StructureNotifyMask, close_game, game);
     mlx_loop(game->mlx);
