@@ -60,5 +60,8 @@ int     close_game(t_game *game);
 void    event_receiver(t_game *game);
 void    exit_game(t_game *game, char *msg);
 void	map_parse(t_game *game);
+int     sprite_move(int keycode, t_game *game);
+int     len_array(char **arr);
+void    free_game_array(int arr_len, char **arr, t_game *game, int err);
 
 #endif
