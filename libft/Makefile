@@ -6,7 +6,7 @@
 #    By: baguiar- <baguiar-@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 11:53:45 by baguiar-          #+#    #+#              #
-#    Updated: 2024/05/23 16:33:38 by baguiar-         ###   ########.fr        #
+#    Updated: 2024/06/26 14:22:16 by baguiar-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,8 +80,9 @@ FTPRINTF_DIR = 	$(SRC_DIR)ft_printf/ft_printf_cases.c \
 				$(SRC_DIR)ft_printf/ft_printf_x.c \
 				$(SRC_DIR)ft_printf/ft_printf.c \
 
-GNL_DIR = $(SRC_DIR)gnl/get_next_line_utils.c \
-		  $(SRC_DIR)gnl/get_next_line.c \
+GNL_DIR = $(SRC_DIR)gnl/get_next_line.c \
+		##$(SRC_DIR)gnl/get_next_line_utils.c \##
+		  
 
 SRC	:= $(FTIS_DIR) $(FTMEM_DIR) $(FTPUT_DIR) $(FTTO_DIR) $(FTSTR_DIR) $(FTLST_DIR) $(FTPRINTF_DIR) $(GNL_DIR)
 

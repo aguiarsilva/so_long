@@ -15,7 +15,7 @@ NAME = so_long
 LIBFT	= ./libft/libft.a
 MLX_LIB = ./minilibx-linux
 MLX = ./minilibx-linux/libmlx.a
-INC		= include/
+INC		= includes/
 SRC_DIR = src/
 OBJ_DIR = obj/
 CC = cc
@@ -23,7 +23,7 @@ CC = cc
 RM = rm -f
 
 CFLAGS = -Wall -Werror -Wextra -I
-MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+MLX_FLAGS = -L$(MLX_LIB) -lmlx -L/usr/lib/X11 -lXext -lX11 -lm -lXrandr -lXinerama -lXcursor -lXrender
 
 SO_LONG_DIR	=		$(SRC_DIR)events.c	\
 					$(SRC_DIR)map_control.c	\
@@ -50,7 +50,7 @@ $(MLX):
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $(INC) $(OBJ) $(LIBFT) $(MLX) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INC) $(OBJ) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $(NAME)
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c 
 	@mkdir -p $(@D)
