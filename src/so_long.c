@@ -14,8 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	t_game	game;
 	int		fd;
+	t_game	game;
 
 	fd = open_map(argc, argv);
 	game.str = map_read(fd);
