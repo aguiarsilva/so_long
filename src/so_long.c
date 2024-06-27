@@ -19,11 +19,12 @@ int	main(int argc, char **argv)
 
 	fd = open_map(argc, argv);
 	game.str = map_read(fd);
+	map_parse(&game);
 	game.mlx = mlx_init();
 	if (game.mlx == NULL)
 		return (1);
-	game.width = size_col(&game) * 16;
-	game.height = size_lin(&game) * 16;
+	game.width = size_col(&game) * 64;
+	game.height = size_lin(&game) * 64;
 	game.window = mlx_new_window(game.mlx, game.width, game.height, argv[0]);
 	if (game.window == NULL)
 	{

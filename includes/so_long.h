@@ -40,7 +40,7 @@ typedef struct s_game
 	int		width;
 	int		height;
 	int		collectibles;
-	int		exit_E;
+	int		exit_e;
 	int		begin;
 	int		move;
 	char	*str;

@@ -12,32 +12,32 @@
 
 #include "../includes/so_long.h"
 
-void    exit_error(char *error_msg)
+void	exit_error(char *error_msg)
 {
 	ft_printf("%s\n", error_msg);
 	exit(1);
 }
 
-int     open_map(int argc, char **argv)
+int	open_map(int argc, char **argv)
 {
-	int fd;
-	char    *format;
+	int		fd;
+	char	*format;
 
 	if (argc != 2)
 		exit_error("Error\n The program must have one argument\n");
 
 	format = ft_strrchr(argv[1], '.');
 	if (!format)
-		exit_error("Error\n Invalid file format");
+		exit_error("Error\n Invalid file format\n");
 	else
 	{
 		if (ft_strncmp(format, ".ber", ft_strlen(format)) != 0)
-			exit_error("Error\n Invalid file format");
+			exit_error("Error\n Invalid file format\n");
 	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error\n");
+		ft_printf("Error\n");
 		exit(1);
 	}
 	return (fd);

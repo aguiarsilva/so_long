@@ -16,41 +16,42 @@
 if the map is valid, fill the map with the images and render the complete map to the window
 */
 
-static void     parse_elements(t_game *game)
+static void	parse_elements(t_game *game)
 {
-	char    *map;
+	char	*game_ptr;
 
-	map = game->str;
+	game_ptr = game->str;
 	game->collectibles = 0;
-	game->exit_E = 0;
+	game->exit_e = 0;
 	game->begin = 0;
-	while (*map)
+	while (*game_ptr)
 	{
-		if (*map != '0' && *map != '1' && *map != 'C' && *map != 'E' && *map != 'P' && *map != '\n')
-			exit_game(game, "Error\nInvalid charaters on Map\n");
-		if (*map == 'C')
+		if (*game_ptr != '0' && *game_ptr != '1' && *game_ptr != 'C'
+			&& *game_ptr != 'E' && *game_ptr != 'P' && *game_ptr != '\n')
+			exit_game(game, "Error\nInvalid characters on Map\n");
+		if (*game_ptr == 'C')
 			game->collectibles++;
-		if (*map == 'P')
+		if (*game_ptr == 'E')
+			game->exit_e++;
+		if (*game_ptr == 'P')
 			game->begin++;
-		if (*map == 'E')
-			game->exit_E++;
-		if (*map++ == '\n' && *map == '\n')
-			exit_game(game, "Error\nWrong map configuration");
+		if (*game_ptr++ == '\n' && *game_ptr == '\n')
+			exit_game(game, "Error\nWrong map configuration\n");
 	}
-	if (game->collectibles == 0 || game->exit_E == 0 || game->begin == 0)
-		exit_game(game, "Error\nMap must contain C, E and P characters");
-	if (game->exit_E != 1 || game->begin != 1)
-		exit_game(game, "Error\nThe game must contain one player and one exit");
+	if (game->collectibles == 0 || game->exit_e == 0 || game->begin == 0)
+		exit_game(game, "Error\nMap must contain C, E and P characters\n");
+	if (game->exit_e != 1 || game->begin != 1)
+		exit_game(game, "Error\nThe game must contain 1 player and 1 exit\n");
 }
 /*Check if the map is rectangular by checking if the lines that compose
 the map are of the same size*/
 
-static void     check_rectangular(t_game *game, char **game_arr)
+static void	check_rectangular(t_game *game, char **game_arr)
 {
-	int     arr_len;
-	int     idx;
-	int     line_len;
-	int     tmp;
+	int	arr_len;
+	int	idx;
+	int	line_len;
+	int	tmp;
 
 	arr_len = len_array(game_arr);
 	idx = 0;
@@ -63,7 +64,7 @@ static void     check_rectangular(t_game *game, char **game_arr)
 	}
 }
 
-static int      check_up_down_walls(char **game_arr, int i, int j)
+static int	check_up_down_walls(char **game_arr, int i, int j)
 {
 	while (game_arr[i][j])
 	{
@@ -77,7 +78,7 @@ static int      check_up_down_walls(char **game_arr, int i, int j)
 valid (1) and if the first and last char of each line are also valid (1)
 if not valid, free array, exit program and show error message*/
 
-static void		wall_parse(t_game *game, char **game_arr)
+static void	wall_parse(t_game *game, char **game_arr)
 {
 	int		arr_len;
 	int		i;
