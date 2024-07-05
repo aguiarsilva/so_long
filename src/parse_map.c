@@ -26,8 +26,7 @@ static void	parse_elements(t_game *game)
 	game->begin = 0;
 	while (*game_ptr)
 	{
-		if (!(*game_ptr == '0' && *game_ptr == '1' && *game_ptr == 'C'
-				&& *game_ptr == 'E' && *game_ptr == 'P' && *game_ptr == '\n'))
+		if (check_char(game) == 1)
 			exit_game(game, "Error\nInvalid characters on Map\n");
 		if (*game_ptr == 'C')
 			game->collectibles++;
