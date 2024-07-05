@@ -25,7 +25,6 @@ int	open_map(int argc, char **argv)
 
 	if (argc != 2)
 		exit_error("Error\n The program must have one argument\n");
-
 	format = ft_strrchr(argv[1], '.');
 	if (!format)
 		exit_error("Error\n Invalid file format\n");

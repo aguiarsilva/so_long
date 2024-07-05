@@ -26,6 +26,11 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 
+# define VALID_MAP 0
+# define NOT_RECTANGULAR 1
+# define INVALID_WALL 2
+# define SPRITE_SIZE 64
+
 typedef struct s_img
 {
 	void    *img;
@@ -64,6 +69,5 @@ int     sprite_move(int keycode, t_game *game);
 int     len_array(char **arr);
 void    free_game_array(int arr_len, char **arr, t_game *game, int err);
 int     put_map(t_game *game);
-int    check_char(t_game *game);
 
 #endif

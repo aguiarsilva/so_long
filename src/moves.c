@@ -21,7 +21,7 @@ static void	go_up(t_game *game)
 	char	*spot_above;
 
 	sprite = ft_strchr(game->str, 'P');
-	spot_above = sprite - (game->width / 64) - 1;
+	spot_above = sprite - (game->width / SPRITE_SIZE) - 1;
 	if (*spot_above == 'C' || *spot_above == '0')
 	{
 		*spot_above = 'P';
@@ -67,7 +67,7 @@ static void	go_down(t_game *game)
 	char	*spot_under;
 
 	sprite = ft_strchr(game->str, 'P');
-	spot_under = sprite + (game->width / 64) + 1;
+	spot_under = sprite + (game->width / SPRITE_SIZE) + 1;
 	if (*spot_under == 'C' || *spot_under == '0')
 	{
 		*spot_under = 'P';

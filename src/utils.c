@@ -34,8 +34,8 @@ void	free_game_array(int arr_len, char **arr, t_game *game, int err)
 	while (--arr_len >= 0)
 		free(arr[arr_len]);
 	free(arr);
-	if (err == 1)
+	if (err == NOT_RECTANGULAR)
 		exit_game(game, "Error\nThe map is not rectangular\n");
-	if (err == 2)
+	if (err == INVALID_WALL)
 		exit_game(game, "Error\nMap not closed by walls!\n");
 }

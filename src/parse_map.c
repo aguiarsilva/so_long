@@ -26,7 +26,8 @@ static void	parse_elements(t_game *game)
 	game->begin = 0;
 	while (*game_ptr)
 	{
-		if (check_char(game) == 1)
+		if ((*game_ptr != '0' && *game_ptr != '1' && *game_ptr != 'C'
+			&& *game_ptr != 'E' && *game_ptr != 'P' && *game_ptr != '\n'))
 			exit_game(game, "Error\nInvalid characters on Map\n");
 		if (*game_ptr == 'C')
 			game->collectibles++;
@@ -59,7 +60,7 @@ static void	check_rectangular(t_game *game, char **game_arr)
 	{
 		tmp = ft_strlen(game_arr[idx]);
 		if (line_len != tmp)
-			free_game_array(arr_len, game_arr, game, 1);
+			free_game_array(arr_len, game_arr, game, NOT_RECTANGULAR);
 	}
 }
 
@@ -68,9 +69,9 @@ static int	check_up_down_walls(char **game_arr, int i, int j)
 	while (game_arr[i][j])
 	{
 		if (game_arr[i][j++] != '1')
-			return (2);
+			return (INVALID_WALL);
 	}
-	return (0);
+	return (VALID_MAP);
 }
 
 /*to parse the map take the array and check if top and bottom are
@@ -87,18 +88,18 @@ static void	wall_parse(t_game *game, char **game_arr)
 	i = 0;
 	j = 0;
 	if (check_up_down_walls(game_arr, i, j))
-		free_game_array(arr_len, game_arr, game, 2);
+		free_game_array(arr_len, game_arr, game, INVALID_WALL);
 	j = ft_strlen(game_arr[0]) - 1;
 	while (++i < arr_len - 1)
 	{
 		if (game_arr[i][0] != '1')
-			free_game_array(arr_len, game_arr, game, 2);
+			free_game_array(arr_len, game_arr, game, INVALID_WALL);
 		if (game_arr[i][j] != '1')
-			free_game_array(arr_len, game_arr, game, 2);
+			free_game_array(arr_len, game_arr, game, INVALID_WALL);
 	}
 	if (check_up_down_walls(game_arr, i, 0))
-		free_game_array(arr_len, game_arr, game, 2);
-	free_game_array(arr_len, game_arr, game, 0);
+		free_game_array(arr_len, game_arr, game, INVALID_WALL);
+	free_game_array(arr_len, game_arr, game, VALID_MAP);
 }
 
 void	map_parse(t_game *game)

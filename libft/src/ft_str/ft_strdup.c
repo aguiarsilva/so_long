@@ -6,13 +6,25 @@
 /*   By: baguiar- <baguiar-@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:21:53 by baguiar-          #+#    #+#             */
-/*   Updated: 2024/06/27 14:55:40 by baguiar-         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:52:30 by baguiar-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
 
 char	*ft_strdup(const char *s1)
+{
+	char	*ptr;
+	size_t	len;
+
+	len = ft_strlen(s1) + 1;
+	ptr = (char *) malloc(len);
+	if (ptr != NULL)
+		ft_strlcpy(ptr, s1, len);
+	return (ptr);
+}
+
+/* char	*ft_strdup(const char *s1)
 {
 	char	*s2;
 	size_t	i;
@@ -28,4 +40,4 @@ char	*ft_strdup(const char *s1)
 	}
 	s2[i] = '\0';
 	return (s2);
-}
+} */
