@@ -15,14 +15,14 @@
 /* use mlx_destroy functions to make clean exit when pressing
 ESC key. */
 
-static int	esc_key(int keycode, t_game *game)
+static int	escape_window(int keycode, t_map *map)
 {
 	if (keycode == XK_Escape)
 	{
-		mlx_destroy_window(game->mlx, game->window);
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-		free(game->str);
+		mlx_destroy_window(map->mlx, map->window);
+		mlx_destroy_display(map->mlx);
+		free(map->mlx);
+		free(map->string);
 		exit(0);
 	}
 	return (0);
@@ -30,24 +30,24 @@ static int	esc_key(int keycode, t_game *game)
 
 /* use mlx_destroy functions to make exit when X on the window is clicked*/
 
-int	close_game(t_game *game)
+int	close_window(t_map *map)
 {
-	mlx_destroy_window(game->mlx, game->window);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
-	free(game->str);
+	mlx_destroy_window(map->mlx, map->window);
+	mlx_destroy_display(map->mlx);
+	free(map->mlx);
+	free(map->string);
 	exit(0);
 	return (0);
 }
 
 /*keep game running and waiting for events using mlx_hook functions*/
 
-void	event_receiver(t_game *game)
+void	receive_events(t_map *map)
 {
-	mlx_loop_hook(game->mlx, put_map, game);
-	mlx_hook(game->window, KeyPress, KeyPressMask, sprite_move, game);
-	mlx_hook(game->window, KeyRelease, KeyReleaseMask, esc_key, game);
-	mlx_hook(game->window, DestroyNotify, StructureNotifyMask,
-		close_game, game);
-	mlx_loop(game->mlx);
+	mlx_loop_hook(map->mlx, render_map, map);
+	mlx_hook(map->window, KeyPress, KeyPressMask, move_player, map);
+	mlx_hook(map->window, KeyRelease, KeyReleaseMask, escape_window, map);
+	mlx_hook(map->window, DestroyNotify, StructureNotifyMask, close_window,
+		map);
+	mlx_loop(map->mlx);
 }

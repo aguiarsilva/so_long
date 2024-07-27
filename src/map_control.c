@@ -12,48 +12,48 @@
 
 #include "../includes/so_long.h"
 
-void	exit_error(char *error_msg)
+static void	print_error_and_exit(char *message)
 {
-	ft_printf("%s\n", error_msg);
+	printf("%s\n", message);
 	exit(1);
 }
 
-int	open_map(int argc, char **argv)
+int	open_map(int argc, char *argv[])
 {
-	int		fd;
-	char	*format;
+	int		file_descriptor;
+	char	*file_format;
 
 	if (argc != 2)
-		exit_error("Error\n The program must have one argument\n");
-	format = ft_strrchr(argv[1], '.');
-	if (!format)
-		exit_error("Error\n Invalid file format\n");
+		print_error_and_exit("Error\n The program must have one argument\n");
+	file_format = ft_strrchr(argv[1], '.');
+	if (!file_format)
+		print_error_and_exit("Error\n Invalid file format\n");
 	else
 	{
-		if (ft_strncmp(format, ".ber", ft_strlen(format)) != 0)
-			exit_error("Error\n Invalid file format\n");
+		if (ft_strncmp(file_format, ".ber", ft_strlen(file_format)) != 0)
+			print_error_and_exit("Error\n Invalid file format\n");
 	}
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
+	file_descriptor = open(argv[1], O_RDONLY);
+	if (file_descriptor == -1)
 	{
-		ft_printf("Error\n");
+		perror("Error\n");
 		exit(1);
 	}
-	return (fd);
+	return (file_descriptor);
 }
 
-char	*map_read(int fd)
+char	*read_map(int file_descriptor)
 {
 	char	*map;
-	int		rd_line;
+	int		lines_read;
 	char	*line;
 	char	*temp;
 
 	map = ft_strdup("");
-	rd_line = 0;
-	while (++rd_line)
+	lines_read = 0;
+	while (++lines_read)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(file_descriptor);
 		if (line == NULL)
 			break ;
 		temp = ft_strjoin(map, line);

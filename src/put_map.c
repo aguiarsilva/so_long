@@ -12,48 +12,44 @@
 
 #include "../includes/so_long.h"
 
-static void	conv_xpm_to_img(t_game *game)
+static void	read_xpm_to_image(t_map *map)
 {
-	game->floor.img = mlx_xpm_file_to_image(game->mlx,
-			"assets/floor.xpm", &game->floor.width, &game->floor.height);
-	game->wall.img = mlx_xpm_file_to_image(game->mlx,
-			"assets/wall.xpm", &game->wall.width, &game->wall.height);
-	game->collectible.img = mlx_xpm_file_to_image(game->mlx,
-			"assets/collectible.xpm", &game->collectible.width,
-			&game->collectible.height);
-	game->exit.img = mlx_xpm_file_to_image(game->mlx,
-			"assets/Exit_barrel.xpm", &game->exit.width, &game->exit.height);
-	game->player.img = mlx_xpm_file_to_image(game->mlx,
-			"assets/player.xpm", &game->player.width, &game->player.height);
+	map->tile.img = mlx_xpm_file_to_image(map->mlx, "../assets/floor.xpm",
+			&map->tile.width, &map->tile.height);
+	map->wall.img = mlx_xpm_file_to_image(map->mlx, "../assets/wall.xpm",
+			&map->wall.width, &map->wall.height);
+	map->coin.img = mlx_xpm_file_to_image(map->mlx, "../assets/collectible.xpm",
+			&map->coin.width, &map->coin.height);
+	map->exit.img = mlx_xpm_file_to_image(map->mlx, "../assets/Exit_barrel.xpm",
+			&map->exit.width, &map->exit.height);
+	map->player.img = mlx_xpm_file_to_image(map->mlx, "../assets/player.xpm",
+			&map->player.width, &map->player.height);
 }
 
-static void	show_img_to_win(t_game *game, int x, int y, int i)
+static void	put_image_to_window(t_map *map, int x, int y, int i)
 {
-	if (game->str[i] == '0')
-		mlx_put_image_to_window(game->mlx, game->window, game->floor.img, x, y);
-	if (game->str[i] == '1')
-		mlx_put_image_to_window(game->mlx, game->window, game->wall.img, x, y);
-	if (game->str[i] == 'C')
-		mlx_put_image_to_window(game->mlx, game->window,
-			game->collectible.img, x, y);
-	if (game->str[i] == 'E')
-		mlx_put_image_to_window(game->mlx, game->window,
-			game->exit.img, x, y);
-	if (game->str[i] == 'P')
-		mlx_put_image_to_window(game->mlx, game->window,
-			game->player.img, x, y);
+	if (map->string[i] == '0')
+		mlx_put_image_to_window(map->mlx, map->window, map->tile.img, x, y);
+	if (map->string[i] == '1')
+		mlx_put_image_to_window(map->mlx, map->window, map->wall.img, x, y);
+	if (map->string[i] == 'C')
+		mlx_put_image_to_window(map->mlx, map->window, map->coin.img, x, y);
+	if (map->string[i] == 'E')
+		mlx_put_image_to_window(map->mlx, map->window, map->exit.img, x, y);
+	if (map->string[i] == 'P')
+		mlx_put_image_to_window(map->mlx, map->window, map->player.img, x, y);
 }
 
-static void	remove_img(t_game *game)
+static void	destroy_image(t_map *map)
 {
-	mlx_destroy_image(game->mlx, game->floor.img);
-	mlx_destroy_image(game->mlx, game->wall.img);
-	mlx_destroy_image(game->mlx, game->collectible.img);
-	mlx_destroy_image(game->mlx, game->exit.img);
-	mlx_destroy_image(game->mlx, game->player.img);
+	mlx_destroy_image(map->mlx, map->tile.img);
+	mlx_destroy_image(map->mlx, map->wall.img);
+	mlx_destroy_image(map->mlx, map->coin.img);
+	mlx_destroy_image(map->mlx, map->exit.img);
+	mlx_destroy_image(map->mlx, map->player.img);
 }
 
-int	put_map(t_game *game)
+int	render_map(t_map *map)
 {
 	int	x;
 	int	y;
@@ -62,19 +58,19 @@ int	put_map(t_game *game)
 	x = 0;
 	y = 0;
 	i = 0;
-	conv_xpm_to_img(game);
-	while (y < game-> height)
+	read_xpm_to_image(map);
+	while (y < map->height)
 	{
-		while (x < game->width)
+		while (x < map->width)
 		{
-			show_img_to_win(game, x, y, i);
-			x += game->floor.width;
+			put_image_to_window(map, x, y, i);
+			x += map->tile.width;
 			i++;
 		}
 		x = 0;
-		y += game->floor.height;
+		y += map->tile.height;
 		i++;
 	}
-	remove_img(game);
+	destroy_image(map);
 	return (0);
 }

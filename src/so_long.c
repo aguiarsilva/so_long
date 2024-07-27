@@ -12,27 +12,27 @@
 
 #include "../includes/so_long.h"
 
-int	main(int argc, char **argv)
+int	main(int argc, char *argv[])
 {
-	int		fd;
-	t_game	game;
+	int		file_descriptor;
+	t_map	map;
 
-	fd = open_map(argc, argv);
-	game.str = map_read(fd);
-	//map_parse(&game);
-	game.mlx = mlx_init();
-	if (game.mlx == NULL)
+	file_descriptor = open_map(argc, argv);
+	map.string = read_map(file_descriptor);
+	parse_map(&map);
+	map.mlx = mlx_init();
+	if (map.mlx == NULL)
 		return (1);
-	game.width = size_col(&game) * SPRITE_SIZE;
-	game.height = size_lin(&game) * SPRITE_SIZE;
-	game.window = mlx_new_window(game.mlx, game.width, game.height, argv[0]);
-	if (game.window == NULL)
+	map.width = measure_columns(&map) * SPRITE_SIZE;
+	map.height = measure_lines(&map) * SPRITE_SIZE;
+	map.window = mlx_new_window(map.mlx, map.width, map.height, argv[0]);
+	if (map.window == NULL)
 	{
-		free(game.window);
+		free(map.window);
 		return (1);
 	}
-	game.move = 0;
-	event_receiver(&game);
-	free(game.str);
+	map.movements = 0;
+	receive_events(&map);
+	free(map.string);
 	return (0);
 }

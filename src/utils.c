@@ -12,30 +12,30 @@
 
 #include "../includes/so_long.h"
 
-void	exit_game(t_game *game, char *msg)
+void	exit_program(t_map *map, char *message)
 {
-	ft_printf("%s", msg);
-	free (game->str);
-	exit (1);
+	printf("%s", message);
+	free(map->string);
+	exit(1);
 }
 
-int	len_array(char **arr)
+int	array_len(char **array)
 {
-	int	arr_len;
+	int		array_length;
 
-	arr_len = 0;
-	while (arr[arr_len])
-		arr_len++;
-	return (arr_len);
+	array_length = 0;
+	while (array[array_length])
+		array_length++;
+	return (array_length);
 }
 
-void	free_game_array(int arr_len, char **arr, t_game *game, int err)
+void	free_map_array(int array_length, char **array, t_map *map, int error)
 {
-	while (--arr_len >= 0)
-		free(arr[arr_len]);
-	free(arr);
-	if (err == NOT_RECTANGULAR)
-		exit_game(game, "Error\nThe map is not rectangular\n");
-	if (err == INVALID_WALL)
-		exit_game(game, "Error\nMap not closed by walls!\n");
+	while (--array_length >= 0)
+		free(array[array_length]);
+	free(array);
+	if (error == NOT_RECTANGULAR)
+		exit_program(map, "Error\nThe map is not rectangular\n");
+	if (error == INVALID_WALL)
+		exit_program(map, "Error\nMap not closed by walls!\n");
 }

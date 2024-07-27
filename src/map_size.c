@@ -12,26 +12,26 @@
 
 #include "../includes/so_long.h"
 
-int	size_col(t_game *game)
+int	measure_columns(t_map *map)
 {
-	char		*new_line;
-	int			col_size;
+	char	*ptr_to_newline;
+	int		line_size;
 
-	new_line = ft_strchr(game->str, '\n');
-	if (new_line)
-		col_size = new_line - game->str;
+	ptr_to_newline = ft_strchr(map->string, '\n');
+	if (ptr_to_newline)
+		line_size = ptr_to_newline - map->string;
 	else
-		col_size = 0;
-	return (col_size);
+		line_size = 0;
+	return (line_size);
 }
 
-int	size_lin(t_game *game)
+int	measure_lines(t_map *map)
 {
-	char	**game_lns;
-	int		arr_len;
+	char	**map_lines;
+	int		array_length;
 
-	game_lns = ft_split(game->str, '\n');
-	arr_len = len_array(game_lns);
-	free_game_array(arr_len, game_lns, game, 0);
-	return (arr_len);
+	map_lines = ft_split(map->string, '\n');
+	array_length = array_len(map_lines);
+	free_map_array(array_length, map_lines, map, 0);
+	return (array_length);
 }
