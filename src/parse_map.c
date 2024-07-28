@@ -46,7 +46,6 @@ static void	parse_characters(t_map *map)
 /*Check if the map is rectangular by checking if the lines that compose
 the map are of the same size*/
 
-static void	check_rectangular(t_game *game, char **game_arr)
 static void	is_rectangular(t_map *map, char **map_array)
 {
 	int		array_length;
