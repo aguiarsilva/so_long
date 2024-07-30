@@ -15,7 +15,7 @@
 # include <mlx.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
-# include "../libft/libft.h"
+# include "../libft/inc/libft.h"
 # include <stdio.h>
 # include <fcntl.h>
 # define VALID_MAP 0
